@@ -6,9 +6,9 @@ import { toBigInt } from './utils';
 
 import { DEFAULT_D, DEFAULT_E, DEFAULT_N, SMALLEST_VALID_N } from '../const';
 
-type KeyPair = z.infer<typeof KeyPairSchema>;
+type RSAKeyPair = z.infer<typeof RSAKeyPairSchema>;
 
-const KEY_PAIR_DEFAULT_VALUES: KeyPair = {
+const RSA_KEY_PAIR_DEFAULT_VALUES: RSAKeyPair = {
   public_key: {
     e: DEFAULT_E,
     n: DEFAULT_N,
@@ -19,7 +19,7 @@ const KEY_PAIR_DEFAULT_VALUES: KeyPair = {
   },
 };
 
-const KeyPairSchema = z.object({
+const RSAKeyPairSchema = z.object({
   public_key: z.object({
     e: toBigInt.pipe(
       z.coerce.bigint().gte(3n, 'Debe ser un entero mayor o igual a 3.')
@@ -48,14 +48,14 @@ const KeyPairSchema = z.object({
   }),
 });
 
-const KeyPairSchemaOptions: UseFormProps<KeyPair> = {
-  resolver: zodResolver(KeyPairSchema),
-  defaultValues: KEY_PAIR_DEFAULT_VALUES,
+const RSAKeyPairSchemaOptions: UseFormProps<RSAKeyPair> = {
+  resolver: zodResolver(RSAKeyPairSchema),
+  defaultValues: RSA_KEY_PAIR_DEFAULT_VALUES,
 };
 
 export {
-  type KeyPair,
-  KeyPairSchema,
-  KeyPairSchemaOptions,
-  KEY_PAIR_DEFAULT_VALUES,
+  type RSAKeyPair,
+  RSAKeyPairSchema,
+  RSAKeyPairSchemaOptions,
+  RSA_KEY_PAIR_DEFAULT_VALUES,
 };

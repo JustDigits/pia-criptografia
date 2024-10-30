@@ -30,9 +30,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} font-[family-name:var(--font-geist-sans)] antialiased`}
       >
         <Navbar />
-        {children}
+        <main className="w-full container my-8">{children}</main>
         <footer className="container grid justify-items-center text-center my-8">
-          <p className='text-lg font-semibold'>Elaborado por Áxell Zúñiga Puch (1949989)</p>
+          <p className="text-lg font-semibold">
+            Elaborado por Áxell Zúñiga Puch (1949989)
+          </p>
         </footer>
       </body>
     </html>

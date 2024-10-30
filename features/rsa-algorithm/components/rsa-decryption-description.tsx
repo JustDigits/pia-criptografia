@@ -1,12 +1,12 @@
 import { Heading } from '@/components/ui/heading';
 
-const EncryptionDescription = () => {
+const RSADecryptionDescription = () => {
   return (
     <Heading>
-      <Heading.Title>Encriptación RSA</Heading.Title>
+      <Heading.Title>Desencriptación RSA</Heading.Title>
       <Heading.Description>Descripción.</Heading.Description>
     </Heading>
   );
 };
 
-export { EncryptionDescription };
+export { RSADecryptionDescription };

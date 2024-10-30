@@ -1,9 +1,11 @@
 'use client';
 
+import { InlineMath } from 'react-katex';
 import { useForm } from 'react-hook-form';
 
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
   Form,
   FormControl,
@@ -13,28 +15,26 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-import { type KeyPair } from '../schemas/key-pair';
+import { type RSAKeyPair } from '../schemas/rsa-key-pair';
 import {
-  type EncryptionMessages,
-  EncryptionMessagesSchemaOptions,
-} from '../schemas/encryption-messages';
+  type DecryptionMessages,
+  DecryptionMessagesSchemaOptions,
+} from '../schemas/decryption-messages';
 
-import { encryptMessage } from '../actions/encryption';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { InlineMath } from 'react-katex';
+import { decryptMessage } from '../actions/decryption';
 
 type MessagesEncryptionFormProps = {
-  public_key: KeyPair['public_key'];
+  private_key: RSAKeyPair['private_key'];
 };
 
-const EncryptionForm = ({ public_key }: MessagesEncryptionFormProps) => {
-  const form = useForm<EncryptionMessages>(EncryptionMessagesSchemaOptions);
+const RSADecryptionForm = ({ private_key }: MessagesEncryptionFormProps) => {
+  const form = useForm<DecryptionMessages>(DecryptionMessagesSchemaOptions);
 
-  const onSubmit = (data: EncryptionMessages) => {
-    const { plaintext } = data;
-    const ciphertext = encryptMessage(plaintext, public_key);
+  const onSubmit = (data: DecryptionMessages) => {
+    const { ciphertext } = data;
+    const plaintext = decryptMessage(ciphertext, private_key);
 
-    form.setValue('ciphertext', ciphertext);
+    form.setValue('plaintext', plaintext);
   };
 
   return (
@@ -43,24 +43,11 @@ const EncryptionForm = ({ public_key }: MessagesEncryptionFormProps) => {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <Alert variant="informative">
             <AlertDescription>
-              {`Se está utilizando la llave pública `}
-              <InlineMath>{`e = (${public_key.e}, ${public_key.n})`}</InlineMath>
+              {`Se está utilizando la llave privada `}
+              <InlineMath>{`d = (${private_key.d}, ${private_key.n})`}</InlineMath>
             </AlertDescription>
           </Alert>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <FormField
-              control={form.control}
-              name="plaintext"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Texto en Claro</FormLabel>
-                  <FormControl>
-                    <Textarea placeholder="Ingrese su mensaje..." {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <FormField
               control={form.control}
               name="ciphertext"
@@ -70,7 +57,23 @@ const EncryptionForm = ({ public_key }: MessagesEncryptionFormProps) => {
                   <FormControl>
                     <Textarea
                       {...field}
-                      placeholder="Aquí aparecerá el mensaje encriptado..."
+                      placeholder="Ingrese su mensaje encriptado..."
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="plaintext"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Texto en Claro</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Aquí aparecerá el mensaje desencriptado..."
+                      {...field}
                     />
                   </FormControl>
                   <FormMessage />
@@ -79,7 +82,7 @@ const EncryptionForm = ({ public_key }: MessagesEncryptionFormProps) => {
             />
           </div>
           <Button type="submit" className="w-full md:w-fit">
-            Encriptar Mensaje
+            Desencriptar Mensaje
           </Button>
         </form>
       </Form>
@@ -87,4 +90,4 @@ const EncryptionForm = ({ public_key }: MessagesEncryptionFormProps) => {
   );
 };
 
-export { EncryptionForm };
+export { RSADecryptionForm };

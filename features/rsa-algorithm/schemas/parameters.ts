@@ -11,19 +11,11 @@ import {
   SMALLEST_VALID_PRIME,
 } from '../const';
 
-import { isPrime } from '@/features/rsa-algorithm/actions/miller-rabin';
+import { isPrime } from '../actions/miller-rabin';
 
-type AlgorithmParameters = z.infer<typeof AlgorithmParametersSchema>;
+type RSAParameters = z.infer<typeof RSAParametersSchema>;
 
-const ALGORITHM_PARAMETERS_DEFAULT_VALUES: AlgorithmParameters = {
-  primes: {
-    p: DEFAULT_P,
-    q: DEFAULT_Q,
-  },
-  e: DEFAULT_E,
-};
-
-const AlgorithmParametersSchema = z
+const RSAParametersSchema = z
   .object({
     primes: z.object({
       p: toBigInt
@@ -65,14 +57,22 @@ const AlgorithmParametersSchema = z
     path: ['primes.q'],
   });
 
-const AlgorithmParametersSchemaOptions: UseFormProps<AlgorithmParameters> = {
-  resolver: zodResolver(AlgorithmParametersSchema),
-  defaultValues: ALGORITHM_PARAMETERS_DEFAULT_VALUES,
+const RSA_PARAMETERS_DEFAULT_VALUES: RSAParameters = {
+  primes: {
+    p: DEFAULT_P,
+    q: DEFAULT_Q,
+  },
+  e: DEFAULT_E,
+};
+
+const RSAParametersSchemaOptions: UseFormProps<RSAParameters> = {
+  resolver: zodResolver(RSAParametersSchema),
+  defaultValues: RSA_PARAMETERS_DEFAULT_VALUES,
 };
 
 export {
-  type AlgorithmParameters,
-  AlgorithmParametersSchema,
-  AlgorithmParametersSchemaOptions,
-  ALGORITHM_PARAMETERS_DEFAULT_VALUES,
+  type RSAParameters,
+  RSAParametersSchema,
+  RSAParametersSchemaOptions,
+  RSA_PARAMETERS_DEFAULT_VALUES,
 };

@@ -1,19 +1,13 @@
-import { type KeyPair } from '../schemas/key-pair';
+import { type RSAKeyPair } from '../schemas/rsa-key-pair';
 
 import { modular_exponentiation } from './math-utils';
 
 function decryptMessage(
   ciphertext: string,
-  private_key: KeyPair['private_key']
+  private_key: RSAKeyPair['private_key']
 ) {
   const d = private_key.d;
   const n = private_key.n;
-
-  console.log(ciphertext);
-
-  const test = Buffer.from(ciphertext, 'base64').toString();
-
-  console.log('DECRYPT: ', test);
 
   const ciphertexts: string[] = JSON.parse(
     Buffer.from(ciphertext, 'base64').toString('utf-8')

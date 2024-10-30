@@ -1,9 +1,9 @@
-import { type KeyPair } from '../schemas/key-pair';
-import { type AlgorithmParameters } from '../schemas/parameters';
+import { type RSAKeyPair } from '../schemas/rsa-key-pair';
+import { type RSAParameters } from '../schemas/parameters';
 
 import { nmod, gcd, extended_gcd } from './math-utils';
 
-function generateKeyPair(parameters: AlgorithmParameters): KeyPair {
+function generateKeyPair(parameters: RSAParameters): RSAKeyPair {
   const [p, q] = [parameters.primes.p, parameters.primes.q];
 
   const n = p * q;
@@ -13,8 +13,6 @@ function generateKeyPair(parameters: AlgorithmParameters): KeyPair {
     parameters.e && isCoprime(phi_n, parameters.e)
       ? parameters.e
       : getPublicKeyInteger(phi_n);
-
-  console.log(e);
 
   const d = calculateMultiplicativeInverse(phi_n, e);
 

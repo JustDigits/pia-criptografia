@@ -1,8 +1,11 @@
-import { type KeyPair } from '../schemas/key-pair';
+import { type RSAKeyPair } from '../schemas/rsa-key-pair';
 
 import { modular_exponentiation } from './math-utils';
 
-function encryptMessage(plaintext: string, public_key: KeyPair['public_key']) {
+function encryptMessage(
+  plaintext: string,
+  public_key: RSAKeyPair['public_key']
+) {
   const e = public_key.e;
   const n = public_key.n;
 
@@ -31,8 +34,6 @@ function encryptMessage(plaintext: string, public_key: KeyPair['public_key']) {
 
     return C.toString(16); // Hexadecimal representation
   });
-
-  console.log('ENCRPT: ', JSON.stringify(ciphertexts));
 
   return Buffer.from(JSON.stringify(ciphertexts)).toString('base64');
 }

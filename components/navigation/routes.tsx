@@ -19,6 +19,11 @@ const routes: Routes[] = [
     label: 'Cifrado RSA',
     active: (pathname) => pathname === '/cifrado-rsa',
   },
+  {
+    href: '/cifrado-transposicion',
+    label: 'Cifrado por Transposición',
+    active: (pathname) => pathname === '/cifrado-transposicion',
+  },
 ];
 
 const NavbarRoutes = () => {
