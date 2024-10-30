@@ -81,7 +81,9 @@ const DecryptionForm = ({ private_key }: MessagesEncryptionFormProps) => {
               )}
             />
           </div>
-          <Button type="submit">Desencriptar Mensaje</Button>
+          <Button type="submit" className="w-full md:w-fit">
+            Desencriptar Mensaje
+          </Button>
         </form>
       </Form>
     </div>

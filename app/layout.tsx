@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
-        <footer className="grid justify-items-center my-8">
+        <footer className="container grid justify-items-center text-center my-8">
           <p className='text-lg font-semibold'>Elaborado por Áxell Zúñiga Puch (1949989)</p>
         </footer>
       </body>

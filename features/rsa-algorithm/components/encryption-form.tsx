@@ -78,7 +78,9 @@ const EncryptionForm = ({ public_key }: MessagesEncryptionFormProps) => {
               )}
             />
           </div>
-          <Button type="submit">Encriptar Mensaje</Button>
+          <Button type="submit" className="w-full md:w-fit">
+            Encriptar Mensaje
+          </Button>
         </form>
       </Form>
     </div>

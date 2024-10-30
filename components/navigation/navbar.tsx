@@ -5,6 +5,7 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
 
@@ -28,10 +29,11 @@ const Navbar = () => {
 const Panel = () => {
   return (
     <Sheet>
+      <SheetTitle className='hidden'>Menú de Navegación</SheetTitle>
       <SheetTrigger asChild>
         <Button size="icon" variant="outline" className="sm:hidden">
           <PanelIcon className="h-5 w-5" />
-          <span className="sr-only">Toggle Navigation Menu</span>
+          <span className="sr-only">Alternar el menú de navegación</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="max-w-xs sm:max-w-xs">

@@ -19,11 +19,6 @@ const routes: Routes[] = [
     label: 'Cifrado RSA',
     active: (pathname) => pathname === '/cifrado-rsa',
   },
-  {
-    href: '/test',
-    label: 'Test',
-    active: (pathname) => pathname === '/test',
-  },
 ];
 
 const NavbarRoutes = () => {
@@ -55,7 +50,7 @@ const PanelRoutes = () => {
   return (
     <>
       {routes.map((route) => (
-        <SheetClose key={route.href}>
+        <SheetClose key={route.href} asChild>
           <Link
             href={route.href}
             className={cn(
