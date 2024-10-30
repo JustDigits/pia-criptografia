@@ -55,9 +55,8 @@ const PanelRoutes = () => {
   return (
     <>
       {routes.map((route) => (
-        <SheetClose>
+        <SheetClose key={route.href}>
           <Link
-            key={route.href}
             href={route.href}
             className={cn(
               'transition-colors hover:text-primary text-sm font-medium',
