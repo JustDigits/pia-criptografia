@@ -1,12 +1,19 @@
+import { cn } from '@/lib/utils';
+
 type HeadingProps = {
   children: React.ReactNode;
+  className?: string;
 };
 
 type TitleProps = HeadingProps;
 type DescriptionProps = HeadingProps;
 
-const Heading = ({ children }: HeadingProps) => {
-  return <div className="space-y-1 text-center sm:text-left">{children}</div>;
+const Heading = ({ children, className }: HeadingProps) => {
+  return (
+    <div className={cn('space-y-1 text-center sm:text-left', className)}>
+      {children}
+    </div>
+  );
 };
 
 const Title = ({ children }: TitleProps) => {

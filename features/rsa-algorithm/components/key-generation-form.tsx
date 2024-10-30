@@ -34,11 +34,13 @@ import { generateKeyPair } from '../actions/rsa';
 
 type KeyGenerationFormProps = {
   parameters: AlgorithmParameters;
+  keys: KeyPair;
   setParameters: React.Dispatch<React.SetStateAction<AlgorithmParameters>>;
   setKeys: React.Dispatch<React.SetStateAction<KeyPair>>;
 };
 
 const KeyGenerationForm = ({
+  keys,
   parameters,
   setParameters,
   setKeys,
@@ -56,9 +58,9 @@ const KeyGenerationForm = ({
     <div className="grid gap-6">
       <Card className="shadow-none">
         <CardHeader>
-          <CardTitle>Algorithm Configuration</CardTitle>
+          <CardTitle>Configuración del algoritmo</CardTitle>
           <CardDescription>
-            Set the algorithm's initial parameters
+            Establezca los parámetros iniciales que usará el algoritmo
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -71,7 +73,7 @@ const KeyGenerationForm = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        Prime Number <InlineMath>p</InlineMath>
+                        Número Primo <InlineMath>p</InlineMath>
                       </FormLabel>
                       <FormControl>
                         <Input
@@ -90,7 +92,7 @@ const KeyGenerationForm = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        Prime Number <InlineMath>q</InlineMath>
+                        Número Primo <InlineMath>q</InlineMath>
                       </FormLabel>
                       <FormControl>
                         <Input
@@ -109,9 +111,9 @@ const KeyGenerationForm = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        Public Key Number <InlineMath>e</InlineMath>
+                        Llave Pública <InlineMath>e</InlineMath>
                         <span className="ml-1 text-muted-foreground">
-                          (Optional)
+                          (Opcional)
                         </span>
                       </FormLabel>
                       <FormControl>
@@ -122,9 +124,9 @@ const KeyGenerationForm = ({
                         />
                       </FormControl>
                       <FormDescription>
-                        The algorithm will attempt to use this number for the
-                        public key. If invalid, a predetermined number will be
-                        chosen.
+                        El algoritmo intentará usar este número para la llave
+                        pública. Si es invalido, un número predeterminado será
+                        elegido en su lugar.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -132,7 +134,7 @@ const KeyGenerationForm = ({
                 />
               </div>
               <Button type="submit" className="w-full md:w-fit">
-                Generate Key Pair
+                Generar Llaves
               </Button>
             </form>
           </Form>
@@ -140,9 +142,10 @@ const KeyGenerationForm = ({
       </Card>
       <Alert variant="informative">
         <InfoCircledIcon className="h-4 w-4" />
-        <AlertTitle>Notice!</AlertTitle>
+        <AlertTitle>¡Atención!</AlertTitle>
         <AlertDescription>
-          Currently using the following configuration:
+          Actualmente se están utilizando los siguientes parámetros para el
+          algoritmo:
           <ul className="list-disc pl-8">
             <li>
               <InlineMath>{`p = ${parameters.primes.p}`}</InlineMath>
@@ -152,7 +155,12 @@ const KeyGenerationForm = ({
             </li>
             <li>
               <InlineMath>{`e = ${
-                parameters.e ?? '\\textnormal{Randomly chosen}'
+                keys.public_key.e ?? '\\textnormal{Aleatoriamente elegida}'
+              }`}</InlineMath>
+            </li>
+            <li>
+              <InlineMath>{`d = ${
+                keys.private_key.d ?? '\\textnormal{Será calculada}'
               }`}</InlineMath>
             </li>
           </ul>

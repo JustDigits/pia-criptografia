@@ -43,7 +43,7 @@ const EncryptionForm = ({ public_key }: MessagesEncryptionFormProps) => {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <Alert variant="informative">
             <AlertDescription>
-              {`Using public key `}
+              {`Se está utilizando la llave pública `}
               <InlineMath>{`e = (${public_key.e}, ${public_key.n})`}</InlineMath>
             </AlertDescription>
           </Alert>
@@ -53,9 +53,9 @@ const EncryptionForm = ({ public_key }: MessagesEncryptionFormProps) => {
               name="plaintext"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Plain Text Message</FormLabel>
+                  <FormLabel>Texto en Claro</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Enter your message..." {...field} />
+                    <Textarea placeholder="Ingrese su mensaje..." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -66,11 +66,11 @@ const EncryptionForm = ({ public_key }: MessagesEncryptionFormProps) => {
               name="ciphertext"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Encrypted Message</FormLabel>
+                  <FormLabel>Texto Encriptado</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
-                      placeholder="Encrypted message will appear here..."
+                      placeholder="Aquí aparecerá el mensaje encriptado..."
                     />
                   </FormControl>
                   <FormMessage />
@@ -78,7 +78,7 @@ const EncryptionForm = ({ public_key }: MessagesEncryptionFormProps) => {
               )}
             />
           </div>
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Encriptar Mensaje</Button>
         </form>
       </Form>
     </div>

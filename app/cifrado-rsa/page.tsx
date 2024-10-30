@@ -33,6 +33,7 @@ export default function RSAAlgorithmPage() {
       <KeyGenerationDescription />
       <KeyGenerationForm
         parameters={parameters}
+        keys={keys}
         setParameters={setParameters}
         setKeys={setKeys}
       />

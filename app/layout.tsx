@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import { Navbar } from '@/components/navigation';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -26,9 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-[family-name:var(--font-geist-sans)] antialiased`}
       >
+        <Navbar />
         {children}
+        <footer className="grid justify-items-center my-8">
+          <p className='text-lg font-semibold'>Elaborado por Áxell Zúñiga Puch (1949989)</p>
+        </footer>
       </body>
     </html>
   );

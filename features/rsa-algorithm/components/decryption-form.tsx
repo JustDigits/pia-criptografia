@@ -43,7 +43,7 @@ const DecryptionForm = ({ private_key }: MessagesEncryptionFormProps) => {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <Alert variant="informative">
             <AlertDescription>
-              {`Using private key `}
+              {`Se está utilizando la llave privada `}
               <InlineMath>{`d = (${private_key.d}, ${private_key.n})`}</InlineMath>
             </AlertDescription>
           </Alert>
@@ -53,11 +53,11 @@ const DecryptionForm = ({ private_key }: MessagesEncryptionFormProps) => {
               name="ciphertext"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Encrypted Message</FormLabel>
+                  <FormLabel>Texto Encriptado</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
-                      placeholder="Enter encrypted message..."
+                      placeholder="Ingrese su mensaje encriptado..."
                     />
                   </FormControl>
                   <FormMessage />
@@ -69,10 +69,10 @@ const DecryptionForm = ({ private_key }: MessagesEncryptionFormProps) => {
               name="plaintext"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Plain Text Message</FormLabel>
+                  <FormLabel>Texto en Claro</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Decrypted message will appear here..."
+                      placeholder="Aquí aparecerá el mensaje desencriptado..."
                       {...field}
                     />
                   </FormControl>
@@ -81,7 +81,7 @@ const DecryptionForm = ({ private_key }: MessagesEncryptionFormProps) => {
               )}
             />
           </div>
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Desencriptar Mensaje</Button>
         </form>
       </Form>
     </div>

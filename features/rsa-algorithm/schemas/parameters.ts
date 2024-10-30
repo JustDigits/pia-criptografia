@@ -32,12 +32,12 @@ const AlgorithmParametersSchema = z
             .bigint()
             .gte(
               SMALLEST_VALID_PRIME,
-              `Must be an integer greater than or equal to ${SMALLEST_VALID_PRIME}.`
+              `Debe ser un entero mayor o igual a ${SMALLEST_VALID_PRIME}.`
             )
         )
         .refine((p) => isPrime(p), {
           message:
-            'Chosen number is probably not prime (ran 40 iterations of the Miller-Rabin Primality Test).',
+            'El número elegido probablemente no sea primo (se corrieron 40 iteraciones del Test de Primalidad de Miller-Rabin).',
         }),
       q: toBigInt
         .pipe(
@@ -45,23 +45,23 @@ const AlgorithmParametersSchema = z
             .bigint()
             .gte(
               SMALLEST_VALID_PRIME,
-              `Must be an integer greater than or equal to ${SMALLEST_VALID_PRIME}.`
+              `Debe ser un entero mayor o igual a ${SMALLEST_VALID_PRIME}.`
             )
         )
         .refine((p) => isPrime(p), {
           message:
-            'Chosen number is probably not prime (ran 40 iterations of the Miller-Rabin Primality Test).',
+            'El número elegido probablemente no sea primo (se corrieron 40 iteraciones del Test de Primalidad de Miller-Rabin).',
         }),
     }),
     e: toBigInt
       .transform((e) => (e === 0n ? undefined : e))
       .refine((e) => e === undefined || e >= 3n, {
-        message: 'Must be an integer greater than or equal to 3.',
+        message: 'Debe ser un entero mayor o igual a 3.',
       })
       .optional(),
   })
   .refine(({ primes }) => BigInt(primes.p) !== BigInt(primes.q), {
-    message: 'Chosen primes must not be equal.',
+    message: 'Los números primos elegidos no deben ser iguales.',
     path: ['primes.q'],
   });
 

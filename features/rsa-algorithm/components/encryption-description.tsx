@@ -3,8 +3,8 @@ import { Heading } from '@/components/ui/heading';
 const EncryptionDescription = () => {
   return (
     <Heading>
-      <Heading.Title>RSA Encryption</Heading.Title>
-      <Heading.Description>Description.</Heading.Description>
+      <Heading.Title>Encriptación RSA</Heading.Title>
+      <Heading.Description>Descripción.</Heading.Description>
     </Heading>
   );
 };

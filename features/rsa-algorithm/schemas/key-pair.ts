@@ -22,31 +22,27 @@ const KEY_PAIR_DEFAULT_VALUES: KeyPair = {
 const KeyPairSchema = z.object({
   public_key: z.object({
     e: toBigInt.pipe(
-      z.coerce
-        .bigint()
-        .gte(3n, 'Must be an integer greater than or equal to 3.')
+      z.coerce.bigint().gte(3n, 'Debe ser un entero mayor o igual a 3.')
     ),
     n: toBigInt.pipe(
       z.coerce
         .bigint()
         .gte(
           SMALLEST_VALID_N,
-          `Must be an integer greater than or equal to ${SMALLEST_VALID_N}.`
+          `Debe ser un entero mayor o igual a ${SMALLEST_VALID_N}.`
         )
     ),
   }),
   private_key: z.object({
     d: toBigInt.pipe(
-      z.coerce
-        .bigint()
-        .gte(3n, 'Must be an integer greater than or equal to 3.')
+      z.coerce.bigint().gte(3n, 'Debe ser un entero mayor o igual a 3.')
     ),
     n: toBigInt.pipe(
       z.coerce
         .bigint()
         .gte(
           SMALLEST_VALID_N,
-          `Must be an integer greater than or equal to ${SMALLEST_VALID_N}.`
+          `Debe ser un entero mayor o igual a ${SMALLEST_VALID_N}.`
         )
     ),
   }),
