@@ -2,20 +2,20 @@ import { InfoCircledIcon } from '@radix-ui/react-icons';
 
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 
-type CurrentAlgorithmParametersAlertProps = {
+type AlgorithmParametersAlertProps = {
   children: React.ReactNode;
 };
 
 const CurrentAlgorithmParametersAlert = ({
   children,
-}: CurrentAlgorithmParametersAlertProps) => {
+}: AlgorithmParametersAlertProps) => {
   return (
     <Alert variant="informative">
       <InfoCircledIcon className="h-4 w-4" />
       <AlertTitle>¡Atención!</AlertTitle>
       <AlertDescription>
         <p>
-          Actualmente se están utilizando los siguientesd parámetros para el
+          Actualmente se están utilizando los siguientes parámetros para el
           algoritmo:
         </p>
         {children}
@@ -24,4 +24,14 @@ const CurrentAlgorithmParametersAlert = ({
   );
 };
 
-export { CurrentAlgorithmParametersAlert };
+const SingleAlgorithmParametersAlert = ({
+  children,
+}: AlgorithmParametersAlertProps) => {
+  return (
+    <Alert variant="informative">
+      <AlertDescription>{children}</AlertDescription>
+    </Alert>
+  );
+};
+
+export { CurrentAlgorithmParametersAlert, SingleAlgorithmParametersAlert };

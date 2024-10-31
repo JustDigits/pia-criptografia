@@ -5,7 +5,7 @@ import { type UseFormProps } from 'react-hook-form';
 type EncryptionMessages = z.infer<typeof EncryptionMessagesSchema>;
 
 const EncryptionMessagesSchema = z.object({
-  plaintext: z.string().trim().min(1, 'El mensaje que se encriptará es obligatorio.'),
+  plaintext: z.string().min(1, 'El mensaje que se encriptará es obligatorio.'),
   ciphertext: z.string(),
 });
 

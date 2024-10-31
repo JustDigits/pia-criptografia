@@ -1,2 +1,4 @@
 export * from './algorithm-parameters-form';
-export * from './current-algorithm-parameters-alert';
+export * from './algorithm-parameters-alert';
+export * from './encryption-form';
+export * from './decryption-form';

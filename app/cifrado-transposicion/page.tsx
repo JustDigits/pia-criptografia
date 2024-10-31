@@ -6,7 +6,9 @@ import {
   TranspositionCipherDescription,
   TranspositionCipherConfigurationForm,
   TranspositionCipherEncryptionDescription,
+  TranspositionCipherEncryptionForm,
   TranspositionCipherDecryptionDescription,
+  TranspositionCipherDecryptionForm,
 } from '@/features/transposition-cipher/components';
 import {
   type TranspositionCipherParameters,
@@ -26,7 +28,9 @@ export default function TranspositionCipherPage() {
         setParameters={setParameters}
       />
       <TranspositionCipherEncryptionDescription />
+      <TranspositionCipherEncryptionForm parameters={parameters} />
       <TranspositionCipherDecryptionDescription />
+      <TranspositionCipherDecryptionForm parameters={parameters} />
     </div>
   );
 }

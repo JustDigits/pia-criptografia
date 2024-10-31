@@ -46,23 +46,42 @@ const TranspositionCipherConfigurationForm = ({
       <AlgorithmParametersForm>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="keyword"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Palabra Clave</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="CRIPTO"
-                      className="w-full md:w-fit"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="flex gap-6 flex-col md:flex-row">
+              <FormField
+                control={form.control}
+                name="keyword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Palabra Clave</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder="CRIPTO"
+                        className="w-full md:w-fit"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="paddingCharacter"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Carácter de Relleno</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder="-"
+                        className="w-full md:w-fit"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <Button type="submit" className="w-full md:w-fit">
               Guardar Configuración
             </Button>
@@ -71,9 +90,8 @@ const TranspositionCipherConfigurationForm = ({
       </AlgorithmParametersForm>
       <CurrentAlgorithmParametersAlert>
         <ul className="list-disc pl-8">
-          <li>
-            <p>Palabra Clave: {parameters.keyword}</p>
-          </li>
+          <li>Palabra Clave: {parameters.keyword}</li>
+          <li>Carácter de Relleno: {parameters.paddingCharacter}</li>
         </ul>
       </CurrentAlgorithmParametersAlert>
     </div>

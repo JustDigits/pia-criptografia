@@ -8,11 +8,13 @@ type TranspositionCipherParameters = z.infer<
 
 const TranspositionCipherParametersSchema = z.object({
   keyword: z.string().trim().min(1),
+  paddingCharacter: z.string().min(1),
 });
 
 const TRANSPOSITION_CIPHER_PARAMETERS_DEFAULT_VALUES: TranspositionCipherParameters =
   {
-    keyword: 'CRIPTO',
+    keyword: 'DBAEC',
+    paddingCharacter: '-',
   };
 
 const TranspositionCipherParametersSchemaOptions: UseFormProps<TranspositionCipherParameters> =
