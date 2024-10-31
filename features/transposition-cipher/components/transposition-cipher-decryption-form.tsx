@@ -17,12 +17,13 @@ const TranspositionCipherDecryptionForm = ({
   parameters,
 }: TranspositionCipherDecryptionFormProps) => {
   const TranspositionCipherDecryption = (ciphertext: string) =>
-    decryptMessage(ciphertext, parameters.keyword);
+    decryptMessage(ciphertext, parameters.keyword, parameters.paddingCharacter);
 
   return (
     <div className="grid gap-6">
       <SingleAlgorithmParametersAlert>
-        Se está utilizando la palabra clave "{parameters.keyword}".
+        Se está utilizando la palabra clave "{parameters.keyword}" con el
+        carácter de relleno "{parameters.paddingCharacter}".
       </SingleAlgorithmParametersAlert>
       <DecryptionForm decryptionFunction={TranspositionCipherDecryption} />
     </div>

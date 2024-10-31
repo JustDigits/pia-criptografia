@@ -90,8 +90,8 @@ const TranspositionCipherConfigurationForm = ({
       </AlgorithmParametersForm>
       <CurrentAlgorithmParametersAlert>
         <ul className="list-disc pl-8">
-          <li>Palabra Clave: {parameters.keyword}</li>
-          <li>Carácter de Relleno: {parameters.paddingCharacter}</li>
+          <li>Palabra Clave: "{parameters.keyword}"</li>
+          <li>Carácter de Relleno: "{parameters.paddingCharacter}"</li>
         </ul>
       </CurrentAlgorithmParametersAlert>
     </div>

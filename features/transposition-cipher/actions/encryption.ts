@@ -1,3 +1,5 @@
+import { padText } from './text-utils';
+
 function encryptMessage(
   plaintext: string,
   keyword: string,
@@ -7,12 +9,7 @@ function encryptMessage(
   const columns = keyword.length;
 
   const sortedKeyword = keyword.split('').sort().join('');
-  const paddedPlaintext = padPlaintext(
-    plaintext,
-    paddingCharacter,
-    rows,
-    columns
-  );
+  const paddedPlaintext = padText(plaintext, paddingCharacter, rows, columns);
 
   let ciphertext = '';
   for (const char of sortedKeyword) {
@@ -24,18 +21,6 @@ function encryptMessage(
   }
 
   return ciphertext;
-}
-
-function padPlaintext(
-  plaintext: string,
-  paddingCharacter: string,
-  rows: number,
-  columns: number
-) {
-  const amountOfPaddingNeeded = rows * columns - plaintext.length;
-  const padding = paddingCharacter.repeat(amountOfPaddingNeeded);
-
-  return plaintext + padding;
 }
 
 export { encryptMessage };

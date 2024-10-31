@@ -18,7 +18,6 @@ function decryptMessage(
   for (let ciphertextHex of ciphertexts) {
     const C = BigInt('0x' + ciphertextHex);
     const M_block = modular_exponentiation(C, d, n);
-    console.log(`${C} ==> ${M_block}`);
 
     // Convert M_block back to bytes
     const blockBytes = [];

@@ -7,8 +7,8 @@ type TranspositionCipherParameters = z.infer<
 >;
 
 const TranspositionCipherParametersSchema = z.object({
-  keyword: z.string().trim().min(1),
-  paddingCharacter: z.string().min(1),
+  keyword: z.string().trim().min(1, 'La palabra clave es obligatoria.'),
+  paddingCharacter: z.string().min(1, 'El carácter de relleno es obligatorio.'),
 });
 
 const TRANSPOSITION_CIPHER_PARAMETERS_DEFAULT_VALUES: TranspositionCipherParameters =

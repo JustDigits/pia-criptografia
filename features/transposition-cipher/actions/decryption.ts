@@ -1,9 +1,12 @@
-function decryptMessage(ciphertext: string, keyword: string) {
+import { padText } from './text-utils';
+
+function decryptMessage(
+  ciphertext: string,
+  keyword: string,
+  paddingCharacter: string
+) {
   const rows = Math.ceil(ciphertext.length / keyword.length);
   const columns = keyword.length;
-
-  console.log(':' + ciphertext + ':');
-  console.log(ciphertext);
 
   const sortedKeyword = keyword.split('').sort().join('');
 
@@ -14,6 +17,13 @@ function decryptMessage(ciphertext: string, keyword: string) {
 
     orderedCiphertext += ciphertext.substring(offset, offset + rows);
   }
+
+  orderedCiphertext = padText(
+    orderedCiphertext,
+    paddingCharacter,
+    rows,
+    columns
+  );
 
   let plaintext = '';
   for (let i = 0; i < rows; i++) {

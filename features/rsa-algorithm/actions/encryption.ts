@@ -30,7 +30,6 @@ function encryptMessage(
       M_block = (M_block << BigInt(8)) + BigInt(byte);
     }
     const C = modular_exponentiation(M_block, e, n);
-    console.log(`${M_block} ==> ${C}`);
 
     return C.toString(16); // Hexadecimal representation
   });
