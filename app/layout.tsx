@@ -31,9 +31,12 @@ export default function RootLayout({
       >
         <Navbar />
         <main className="w-full container my-8">{children}</main>
-        <footer className="container grid justify-items-center text-center my-8">
+        <footer className="container grid justify-items-center text-center my-4">
+          <p className="text-xs uppercase">
+            Licenciatura en Ciencias Computacionales
+          </p>
           <p className="text-lg font-semibold">
-            Elaborado por Áxell Zúñiga Puch (1949989)
+            Elaborado por Áxell Zúñiga Puch (1949989), Grupo N31
           </p>
         </footer>
       </body>

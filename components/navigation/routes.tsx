@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Fragment } from 'react';
 import { usePathname } from 'next/navigation';
 
 import { SheetClose } from '@/components/ui/sheet';
@@ -26,36 +27,21 @@ const routes: Routes[] = [
   },
 ];
 
-const NavbarRoutes = () => {
-  const pathname = usePathname();
-
-  return (
-    <>
-      {routes.map((route) => (
-        <Link
-          key={route.href}
-          href={route.href}
-          className={cn(
-            'transition-colors hover:text-primary text-sm font-medium',
-            route.active(pathname)
-              ? 'text-accent-foreground'
-              : 'text-muted-foreground'
-          )}
-        >
-          {route.label}
-        </Link>
-      ))}
-    </>
-  );
+type RoutesProps = {
+  withSheetClose?: boolean;
 };
 
-const PanelRoutes = () => {
+const Routes = ({ withSheetClose = false }: RoutesProps) => {
   const pathname = usePathname();
+
+  const [Wrapper, wrapperProps] = withSheetClose
+    ? [SheetClose, { asChild: true }]
+    : [Fragment, {}];
 
   return (
     <>
       {routes.map((route) => (
-        <SheetClose key={route.href} asChild>
+        <Wrapper {...wrapperProps} key={route.href}>
           <Link
             href={route.href}
             className={cn(
@@ -67,10 +53,10 @@ const PanelRoutes = () => {
           >
             {route.label}
           </Link>
-        </SheetClose>
+        </Wrapper>
       ))}
     </>
   );
 };
 
-export { NavbarRoutes, PanelRoutes };
+export { Routes };
