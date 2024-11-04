@@ -29,7 +29,7 @@ function millerRabinPrimalityTest(n: bigint, d: bigint, r: number) {
   let x = modular_exponentiation(a, d, n);
   if (x === 1n || x === n - 1n) return true;
 
-  for (let i = 0; i < r && x !== n - 1n; i++) {
+  for (let i = 0; i < r; i++) {
     x = modular_exponentiation(x, 2n, n);
 
     if (x === 1n) return false;

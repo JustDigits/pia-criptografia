@@ -18,18 +18,32 @@ import {
   DecryptionMessagesSchemaOptions,
 } from '@/schemas/decryption-messages';
 
+import { DecryptionError as TranspositionDecryptionError } from '@/features/transposition-cipher/errors';
+
+import { useToast } from '@/hooks/use-toast';
+
 type DecryptionFormProps = {
   decryptionFunction: (ciphertext: string) => string;
 };
 
 const DecryptionForm = ({ decryptionFunction }: DecryptionFormProps) => {
+  const { toast } = useToast();
   const form = useForm<DecryptionMessages>(DecryptionMessagesSchemaOptions);
 
   const onSubmit = (data: DecryptionMessages) => {
-    const { ciphertext } = data;
-    const plaintext = decryptionFunction(ciphertext);
-
-    form.setValue('plaintext', plaintext);
+    try {
+      const { ciphertext } = data;
+      const plaintext = decryptionFunction(ciphertext);
+      form.setValue('plaintext', plaintext);
+    } catch (error) {
+      if (error instanceof TranspositionDecryptionError) {
+        toast({
+          title: '¡Algo salió mal!',
+          description: error.message,
+          variant: 'destructive',
+        });
+      }
+    }
   };
 
   return (

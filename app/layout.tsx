@@ -2,6 +2,7 @@ import './globals.css';
 import localFont from 'next/font/local';
 import type { Metadata } from 'next';
 
+import { Toaster } from '@/components/ui/toaster';
 import { Navbar } from '@/components/navigation';
 
 const geistSans = localFont({
@@ -35,6 +36,7 @@ export default function RootLayout({
             Elaborado por Áxell Zúñiga Puch (1949989), Grupo N31
           </p>
         </footer>
+        <Toaster />
       </body>
     </html>
   );

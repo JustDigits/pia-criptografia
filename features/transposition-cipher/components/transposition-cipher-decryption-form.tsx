@@ -17,7 +17,7 @@ const TranspositionCipherDecryptionForm = ({
   parameters,
 }: TranspositionCipherDecryptionFormProps) => {
   const TranspositionCipherDecryption = (ciphertext: string) =>
-    decryptMessage(ciphertext, parameters.keyword, parameters.paddingCharacter);
+    decryptMessage(ciphertext, parameters.keyword);
 
   return (
     <div className="grid gap-6">

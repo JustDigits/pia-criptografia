@@ -1,12 +1,15 @@
-import { padText } from './text-utils';
+import { DecryptionError } from '../errors';
 
-function decryptMessage(
-  ciphertext: string,
-  keyword: string,
-  paddingCharacter: string
-) {
+function decryptMessage(ciphertext: string, keyword: string) {
   const rows = Math.ceil(ciphertext.length / keyword.length);
   const columns = keyword.length;
+
+  if (ciphertext.length % keyword.length !== 0) {
+    throw new DecryptionError(
+      'INVALID_KEYWORD_LENGTH',
+      'La longitud del texto cifrado debe ser divisible por la longitud de la palabra clave.'
+    );
+  }
 
   const sortedKeyword = keyword.split('').sort().join('');
 
@@ -17,13 +20,6 @@ function decryptMessage(
 
     orderedCiphertext += ciphertext.substring(offset, offset + rows);
   }
-
-  orderedCiphertext = padText(
-    orderedCiphertext,
-    paddingCharacter,
-    rows,
-    columns
-  );
 
   let plaintext = '';
   for (let i = 0; i < rows; i++) {

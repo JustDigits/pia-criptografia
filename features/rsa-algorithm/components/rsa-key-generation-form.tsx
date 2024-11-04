@@ -25,7 +25,10 @@ import {
   RSAParametersSchemaOptions,
 } from '../schemas/parameters';
 
+import { useToast } from '@/hooks/use-toast';
 import { generateKeyPair } from '../actions/key-generation';
+
+import { KeyGenerationError } from '../errors';
 
 type KeyGenerationFormProps = {
   parameters: RSAParameters;
@@ -40,13 +43,39 @@ const RSAKeyGenerationForm = ({
   setParameters,
   setKeys,
 }: KeyGenerationFormProps) => {
+  const { toast } = useToast();
   const form = useForm<RSAParameters>(RSAParametersSchemaOptions);
 
   const onSubmit = (data: RSAParameters) => {
-    const keypair = generateKeyPair(data);
+    try {
+      const keypair = generateKeyPair(data);
 
-    setParameters({ ...data, e: keypair.public_key.e });
-    setKeys(keypair);
+      if (data.e !== undefined && keypair.public_key.e !== data.e) {
+        toast({
+          title: '¡Atención!',
+          description:
+            "Se eligió un valor para la llave pública 'e' ya que el valor especificado no era válido.",
+          variant: 'informative',
+        });
+      }
+
+      setParameters({ ...data, e: keypair.public_key.e });
+      setKeys(keypair);
+    } catch (error) {
+      if (error instanceof KeyGenerationError) {
+        toast({
+          title: '¡Algo salió mal!',
+          description: error.message,
+          variant: 'destructive',
+        });
+      } else {
+        toast({
+          title: '¡Algo salió mal!',
+          description: 'Unable to generate key pair.',
+          variant: 'destructive',
+        });
+      }
+    }
   };
 
   return (
