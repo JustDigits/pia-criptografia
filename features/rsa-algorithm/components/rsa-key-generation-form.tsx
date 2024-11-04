@@ -54,8 +54,15 @@ const RSAKeyGenerationForm = ({
         toast({
           title: '¡Atención!',
           description:
-            "Se eligió un valor para la llave pública 'e' ya que el valor especificado no era válido.",
+            "Los parámetros especificados han sido guardados y serán utilizados para los procesos de encriptación y desencriptación, pero se eligió un valor para la llave pública 'e' ya que el valor especificado no era válido.",
           variant: 'informative',
+        });
+      } else {
+        toast({
+          title: '¡Éxito!',
+          description:
+            'Los parámetros especificados han sido guardados y serán utilizados para los procesos de encriptación y desencriptación.',
+          variant: 'success',
         });
       }
 
