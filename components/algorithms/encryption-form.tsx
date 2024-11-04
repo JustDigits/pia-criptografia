@@ -41,7 +41,7 @@ const EncryptionForm = ({ encryptionFunction }: EncryptionFormProps) => {
             name="plaintext"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Texto en Claro</FormLabel>
+                <FormLabel>Texto Plano</FormLabel>
                 <FormControl>
                   <Textarea placeholder="Ingrese su mensaje..." {...field} />
                 </FormControl>
@@ -54,7 +54,7 @@ const EncryptionForm = ({ encryptionFunction }: EncryptionFormProps) => {
             name="ciphertext"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Texto Encriptado</FormLabel>
+                <FormLabel>Texto Cifrado</FormLabel>
                 <FormControl>
                   <Textarea
                     {...field}

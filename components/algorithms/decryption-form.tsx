@@ -41,7 +41,7 @@ const DecryptionForm = ({ decryptionFunction }: DecryptionFormProps) => {
             name="ciphertext"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Texto Encriptado</FormLabel>
+                <FormLabel>Texto Cifrado</FormLabel>
                 <FormControl>
                   <Textarea
                     {...field}
@@ -57,7 +57,7 @@ const DecryptionForm = ({ decryptionFunction }: DecryptionFormProps) => {
             name="plaintext"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Texto en Claro</FormLabel>
+                <FormLabel>Texto Plano</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Aquí aparecerá el mensaje desencriptado..."
