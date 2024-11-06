@@ -17,6 +17,8 @@ import {
   CurrentAlgorithmParametersAlert,
 } from '@/components/algorithms';
 
+import { useToast } from '@/hooks/use-toast';
+
 import {
   type TranspositionCipherParameters,
   TranspositionCipherParametersSchemaOptions,
@@ -33,12 +35,20 @@ const TranspositionCipherConfigurationForm = ({
   parameters,
   setParameters,
 }: TranspositionCipherParametersFormProps) => {
+  const { toast } = useToast();
   const form = useForm<TranspositionCipherParameters>(
     TranspositionCipherParametersSchemaOptions
   );
 
   const onSubmit = (data: TranspositionCipherParameters) => {
     setParameters(data);
+
+    toast({
+      title: '¡Éxito!',
+      description:
+        'Los parámetros especificados han sido guardados y serán utilizados para los procesos de encriptación y desencriptación.',
+      variant: 'success',
+    });
   };
 
   return (
