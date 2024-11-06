@@ -1,15 +1,9 @@
-## Getting Started
+## Cómo ejecutar el código
 
-First, run the development server:
+Una vez que [Node.js](https://nodejs.org/en/) esté instalado, crear una línea de comandos en la carpeta donde el código fuente haya sido descargado y ejecutar el siguiente comando:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+En su navegador preferido, navegar a [http://localhost:3000](http://localhost:3000) para ver el resultado.
